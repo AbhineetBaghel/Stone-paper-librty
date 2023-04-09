@@ -8,7 +8,7 @@ export const Score = ({ userName, scorePlayer, scoreComputer }) => {
 
     return (
         <Flex direction='column'>
-            <Typography size='32px' fontWeight='400' lineHeight='48px'>PLACAR</Typography>
+            <Typography size='32px' fontWeight='400' lineHeight='48px'>SCORE</Typography>
 
             <Flex justify='space-between'>
                 <Flex direction='column' gap='2px'>
@@ -16,7 +16,7 @@ export const Score = ({ userName, scorePlayer, scoreComputer }) => {
                     <Typography>{scorePlayer}</Typography>
                 </Flex>
                 <Flex direction='column' gap='2px'>
-                    <Typography>COMPUTADOR</Typography>
+                    <Typography>COMPUTER</Typography>
                     <Typography>{scoreComputer}</Typography>
                 </Flex>
             </Flex>

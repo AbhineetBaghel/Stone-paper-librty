@@ -19,11 +19,11 @@ const messages = {
     message: 'Fill the user'
   },
   computerWin: {
-    title: 'Que Pena ',
+    title: 'Awwww ',
     message: 'It wasnt this time, but dont be discouraged. Try again!!'
   },
   playerWin: {
-    title: 'Parabéns',
+    title: 'Congratulations!!',
     message: 'You were Incredible, you played a good game!!'
   }
 }
@@ -83,6 +83,7 @@ function App() {
       setAddress(accounts);
 
       // get token balance and set state
+      
       const tokenBalance = await ldk.indexer.token.getTokenBalance("0x0000000000000000000000000000000000001010", address);
       setBalance({ status: 'success', data: tokenBalance }); // set balance state variable
       console.log(tokenBalance)
@@ -184,11 +185,23 @@ function App() {
 
         <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper</C.Typography>
 
+        <C.Flex>
+        {connected ? (
+        <div>
+          <p>Wallet connected!</p>
+          <p>ChainID: {JSON.stringify(balance.status)}</p>
+          <p>Token Balance: {JSON.stringify(balance.data)}</p>
+          <p>Address: {address}</p>
+        </div>
+      ) : (
+        <button onClick={handleConnectWallet}>Connect Wallet</button>
+      )}
+        </C.Flex>
         <Input placeholder={'Enter player name'} onChange={(value) => handleUserName(value)} />
 
         <Button onClick={startGame}>{playGame ? 'Restart' : 'Start'}</Button>
 
-        <button onClick={handleConnectWallet}>Connect Wallet</button>
+        {/* <button onClick={handleConnectWallet}>Connect Wallet</button> */}
         
         <Score userName={userName} scorePlayer={scorePlayerValue} scoreComputer={scoreComputerValue} />
 
@@ -206,6 +219,8 @@ function App() {
           <C.Rules onClick={() => handleOpenModal('rules')} > Rules</C.Rules>
 
         </C.Flex>
+
+
 
         <ActionsGame actions={actions} onClick={(value) => handleClick(value)} disabled={!playGame} />
 
