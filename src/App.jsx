@@ -133,13 +133,13 @@ function App() {
 
     const playerWin = playerPaperWin || playerRockWin || playerScissorsWin
 
-    if (drawerResult) return (setTextGame('Empate jogue novamente! '))
+    if (drawerResult) return (setTextGame('Tie play again! '))
     if (playerWin) {
       setScorePlayerValue((state) => state + 1)
-      return setTextGame('Vitoria jogue novamente!')
+      return setTextGame('Victory play again!')
     }
     setScoreComputerValue((state) => state + 1)
-    return setTextGame('Derrota jogue novamente"')
+    return setTextGame('Defeat play again')
   }
 
   const handleUserName = (value) => {
