@@ -12,7 +12,7 @@ const messages = {
   rules: {
     title: 'Rules',
     message:
-      'Jo ken po is a game in which people play with their hands, choosing between rock (closed hand), paper (open hand) and scissors (two fingers in front). The game is similar to "odd or even", but with one more variable. And it works like this: Each player chooses an option. Scissors cut paper, but break with rock; the paper wraps around the rock but is cut by the scissors and the rock breaks the scissors and is wrapped by the paper. The challenge here is to beat the computer 10 times! Make your choice and good luck!'
+      ' In this people play with their hands, choosing between rock (closed hand), paper (open hand) and scissors (two fingers in front). The game is similar to "odd or even", but with one more variable. And it works like this: Each player chooses an option. Scissors cut paper, but break with rock; the paper wraps around the rock but is cut by the scissors and the rock breaks the scissors and is wrapped by the paper. The challenge here is to beat the computer 10 times! Make your choice and good luck!'
   },
   user: {
     title: 'User',
@@ -183,7 +183,7 @@ function App() {
     <C.Container>
       <C.Flex direction='column'>
 
-        <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper</C.Typography>
+        <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper Scissor</C.Typography>
 
         <C.Flex>
         {connected ? (
