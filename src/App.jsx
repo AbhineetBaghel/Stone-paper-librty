@@ -82,6 +82,7 @@ function App() {
       // get connected wallet address and set state
       const accounts = await ldk.wallet.address;
       setAddress(accounts);
+      console.log(address)
   
       // get token balance and set state
       const tokenBalance = await ldk.indexer.token.getTokenBalance("0x0000000000000000000000000000000000001010", address);
@@ -207,9 +208,9 @@ function App() {
         {connected ? (
        <div className='button-main'>
        <p>Wallet connected!</p>
-       {/* <p>ChainID: {JSON.stringify(balance.status)}</p>
-       <p>Token Balance: {JSON.stringify(balance.data)}</p>
-       <p>Address: {address}</p> */}
+       {/* <p>ChainID: {JSON.stringify(balance.status)}</p> */}
+       {/* <p>Token Balance: {JSON.stringify(balance.data)}</p> */}
+       {/* <p>Address: {JSON.stringify(address)}</p> */}
      </div>
       ) : (
         <button onClick={handleConnectWallet}>Connect Wallet</button>
