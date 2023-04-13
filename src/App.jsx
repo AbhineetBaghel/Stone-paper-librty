@@ -66,6 +66,7 @@ function App() {
   const [connected, setConnected] = useState(false);
   const [balance, setBalance] = useState({ status: null, data: null }); // initialize balance state variable
   const [address, setAddress] = useState('');
+  
 
   const SCORE_TO_WIN = 10
 
@@ -77,25 +78,23 @@ function App() {
       const connection = ldk.wallet.metamask;
       await connection.connect();
       console.log(await connection.getChainId());
-      
+  
       // get connected wallet address and set state
       const accounts = await ldk.wallet.address;
       setAddress(accounts);
-
+  
       // get token balance and set state
-      
       const tokenBalance = await ldk.indexer.token.getTokenBalance("0x0000000000000000000000000000000000001010", address);
       setBalance({ status: 'success', data: tokenBalance }); // set balance state variable
       console.log(tokenBalance)
-      setConnected(true);
+      setConnected(true); // set connected state variable to true
     } catch (err) {
       console.error(err);
     }
   }
-
   const handleConnectWallet = async () => {
-    await connectWallet();
-  }
+  await connectWallet();
+}
 
 
   const handleOpenModal = (type) => {
@@ -118,6 +117,14 @@ function App() {
 
 
   const handleClick = (value) => {
+
+    if (!connected) {
+      // If wallet is not connected, show an error message
+      setTextGame('Please connect your wallet to play the game!');
+      return;
+    }
+
+
     setUserAction(value.label)
     const actionComputer = randomActionComputer()
     setComputerAction(actionComputer.label)
@@ -143,6 +150,13 @@ function App() {
   }
 
   const handleUserName = (value) => {
+
+    if (!connected) {
+      // If wallet is not connected, show an error message
+      alert('Please connect your wallet to restart the game!');
+      return;
+    }
+
     if (!value) return setUserName('USER')
     setUserName(value)
 
@@ -176,6 +190,7 @@ function App() {
     checkVitory()
   }, [scorePlayerValue, scoreComputerValue])
 
+  
 
   return (
 
@@ -183,23 +198,26 @@ function App() {
     <C.Container>
       <C.Flex direction='column'>
 
-        <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper Scissor</C.Typography>
+        <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper</C.Typography>
 
         <C.Flex>
+        <Button onClick={startGame} disabled={!connected || playGame}>
+  {playGame ? 'Restart' : 'Start'}
+</Button>
         {connected ? (
-        <div>
-          <p>Wallet connected!</p>
-          <p>ChainID: {JSON.stringify(balance.status)}</p>
-          <p>Token Balance: {JSON.stringify(balance.data)}</p>
-          <p>Address: {address}</p>
-        </div>
+       <div className='button-main'>
+       <p>Wallet connected!</p>
+       {/* <p>ChainID: {JSON.stringify(balance.status)}</p>
+       <p>Token Balance: {JSON.stringify(balance.data)}</p>
+       <p>Address: {address}</p> */}
+     </div>
       ) : (
         <button onClick={handleConnectWallet}>Connect Wallet</button>
       )}
         </C.Flex>
         <Input placeholder={'Enter player name'} onChange={(value) => handleUserName(value)} />
 
-        <Button onClick={startGame}>{playGame ? 'Restart' : 'Start'}</Button>
+        {/* <Button onClick={startGame}>{playGame ? 'Restart' : 'Start'}</Button> */}
 
         {/* <button onClick={handleConnectWallet}>Connect Wallet</button> */}
         
