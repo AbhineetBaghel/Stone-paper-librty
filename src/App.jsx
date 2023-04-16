@@ -197,6 +197,7 @@ function App() {
 
     
     <C.Container>
+      
       <C.Flex direction='column'>
 
         <C.Typography fontWeight='400' size='32px' lineHeight='48px'>Stone Paper</C.Typography>
